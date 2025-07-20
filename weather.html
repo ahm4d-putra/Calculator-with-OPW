@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Info Cuaca BMKG</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="CSS/style.css">
+    <link rel="stylesheet" href="CSS/themes.css">
+    <style>
+        .weather-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .weather-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .location-selector {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .form-select {
+            padding: 12px 15px;
+            border-radius: 8px;
+            border: 1px solid var(--display-border);
+            background-color: var(--display-bg);
+            color: var(--text-color);
+            min-width: 250px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .form-select:hover {
+            border-color: var(--operator-btn);
+        }
+        
+        .weather-card {
+            background-color: var(--calculator-bg);
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .current-weather {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .weather-icon-main {
+            font-size: 3.5rem;
+            margin-right: 25px;
+            color: var(--operator-btn);
+        }
+        
+        .weather-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 20px;
+            margin-top: 25px;
+        }
+        
+        .weather-item {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            background-color: var(--number-btn);
+            border-radius: 8px;
+            transition: transform 0.3s;
+        }
+        
+        .weather-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .weather-icon {
+            font-size: 1.8rem;
+            margin-right: 15px;
+            width: 30px;
+            text-align: center;
+            color: var(--operator-btn);
+        }
+        
+        .weather-details {
+            flex: 1;
+        }
+        
+        .weather-label {
+            font-size: 0.9rem;
+            color: var(--clock-color);
+            margin-bottom: 3px;
+        }
+        
+        .weather-value {
+            font-size: 1.3rem;
+            font-weight: bold;
+        }
+        
+        .forecast-container {
+            margin-top: 30px;
+        }
+        
+        .forecast-title {
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--history-border);
+        }
+        
+        .forecast-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+        }
+        
+        .forecast-item {
+            background-color: var(--number-btn);
+            padding: 15px;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+        
+        .forecast-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .forecast-day {
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: var(--operator-btn);
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 20px;
+            font-style: italic;
+            color: var(--clock-color);
+        }
+        
+        .error-message {
+            color: #e74c3c;
+            text-align: center;
+            padding: 15px;
+            background-color: rgba(231, 76, 60, 0.1);
+            border-radius: 8px;
+            margin-top: 15px;
+        }
+        
+        @media (max-width: 600px) {
+            .weather-info {
+                grid-template-columns: 1fr;
+            }
+            
+            .forecast-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .form-select {
+                min-width: 100%;
+            }
+        }
+    </style>    <style>
+        .weather-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .current-weather {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+            background-color: rgba(255,255,255,0.1);
+            padding: 20px;
+            border-radius: 15px;
+        }
+        
+        .weather-icon-main {
+            font-size: 4rem;
+            margin-right: 30px;
+            color: #f39c12;
+        }
+        
+        .weather-details {
+            flex: 1;
+        }
+        
+        .weather-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .weather-card {
+            background-color: rgba(255,255,255,0.1);
+            padding: 15px;
+            border-radius: 10px;
+        }
+        
+        .forecast-container {
+            margin-top: 30px;
+        }
+        
+        .forecast-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 15px;
+        }
+        
+        .forecast-item {
+            background-color: rgba(255,255,255,0.1);
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 30px;
+            font-size: 1.2rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="weather-container">
+        <h1>Cuaca Jakarta</h1>
+        
+        <div id="current-weather" class="current-weather">
+            <div class="weather-icon-main">
+                <i class="fas fa-sun"></i>
+            </div>
+            <div class="weather-details">
+                <h2 id="city-name">Jakarta</h2>
+                <div id="weather-description">Memuat data cuaca...</div>
+                <div id="current-temp">- °C</div>
+            </div>
+        </div>
+        
+        <div class="weather-info">
+            <div class="weather-card">
+                <div><i class="fas fa-temperature-high"></i> Suhu</div>
+                <div id="temperature">- °C</div>
+            </div>
+            <div class="weather-card">
+                <div><i class="fas fa-tint"></i> Kelembaban</div>
+                <div id="humidity">- %</div>
+            </div>
+            <div class="weather-card">
+                <div><i class="fas fa-wind"></i> Angin</div>
+                <div id="wind">- km/jam</div>
+            </div>
+            <div class="weather-card">
+                <div><i class="fas fa-eye"></i> Visibilitas</div>
+                <div id="visibility">- km</div>
+            </div>
+        </div>
+        
+        <div class="forecast-container">
+            <h3>Prakiraan 5 Hari</h3>
+            <div id="forecast" class="forecast-grid">
+                <div class="loading">
+                    <i class="fas fa-spinner fa-spin"></i> Memuat prakiraan cuaca...
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/weather.js"></script>
+</body>
+</html>
+
+</head>
+<body class="tema-terang">
+    <nav class="navbar">
+        <div class="navbar-header">
+            <div class="navbar-brand">
+                <i class="fas fa-cloud-sun"></i>
+                <span>Cuaca BMKG</span>
+            </div>
+        </div>
+        <ul class="nav-menu">
+            <li class="nav-item">
+                <a href="index.html" class="nav-link">
+                    <i class="fas fa-home"></i>
+                    <span>Beranda</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="weather.html" class="nav-link active">
+                    <i class="fas fa-cloud-sun"></i>
+                    <span>Cuaca BMKG</span>
+                </a>
+            </li>
+            <li class="nav-item settings">
+                <a href="#" class="nav-link">
+                    <i class="fas fa-cog"></i>
+                    <span>Pengaturan</span>
+                </a>
+                <div class="settings-panel">
+                    <h3>Tampilan</h3>
+                    <div class="theme-switcher">
+                        <span class="theme-label">Tema Gelap</span>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="theme-toggle">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </nav>
+    <script src="js/theme.js"></script>
+    <script src="js/weather.js"></script>
+</body>
+</html>
