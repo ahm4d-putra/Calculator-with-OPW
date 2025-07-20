@@ -1,0 +1,42 @@
+.weather-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.weather-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.location-selector {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.weather-card {
+    background-color: var(--calculator-bg);
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.weather-info {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 15px;
+}
+
+.weather-item {
+    display: flex;
+    align-items: center;
+}
+
+.weather-icon {
+    font-size: 2rem;
+    margin-right: 15px;
+    width: 40px;
+    text-align: center;
+}
