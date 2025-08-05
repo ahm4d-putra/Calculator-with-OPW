@@ -1,102 +1,105 @@
 <!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Kalkulator Modern</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="CSS/style.css">
-    <link rel="stylesheet" href="CSS/themes.css">
-</head>
-<body class="tema-terang">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="CSS/style.css" />
+    <link rel="stylesheet" href="CSS/themes.css" />
+  </head>
+  <body class="tema-terang">
     <nav class="navbar">
-        <div class="navbar-header">
-            <div class="navbar-brand">
-                <i class="fas fa-calculator"></i>
-                <span>KalkulatorPro</span>
-            </div>
+      <div class="navbar-header">
+        <div class="navbar-brand">
+          <i class="fas fa-home"></i>
+          <span>Kalkulator - Ahmad Putra Ramadhan</span>
         </div>
-        <ul class="nav-menu">
-            <li class="nav-item">
-                <a href="index.html" class="nav-link active">
-                    <i class="fas fa-home"></i>
-                    <span>Beranda</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="weather.html" class="nav-link">
-                    <i class="fas fa-cloud-sun"></i>
-                    <span>Cuaca BMKG</span>
-                </a>
-            </li>
-            <li class="nav-item settings">
-                <a href="#" class="nav-link">
-                    <i class="fas fa-cog"></i>
-                    <span>Pengaturan</span>
-                </a>
-                <div class="settings-panel">
-                    <h3>Tampilan</h3>
-                    <div class="theme-switcher">
-                        <span class="theme-label">Tema Gelap</span>
-                        <label class="toggle-switch">
-                            <input type="checkbox" id="theme-toggle">
-                            <span class="slider"></span>
-                        </label>
-                    </div>
-                </div>
-            </li>
-        </ul>
+      </div>
+      <ul class="nav-menu">
+        <li class="nav-item">
+          <a href="index.html" class="nav-link active">
+            <i class="fas fa-home"></i>
+            <span>Beranda</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="weather.html" class="nav-link">
+            <i class="fas fa-cloud-sun"></i>
+            <span>Cuaca OPW</span>
+          </a>
+        </li>
+        <li class="nav-item settings">
+          <a href="#" class="nav-link">
+            <i class="fas fa-cog"></i>
+            <span>Pengaturan</span>
+          </a>
+          <div class="settings-panel">
+            <h3>Tampilan</h3>
+            <div class="theme-switcher">
+              <span class="theme-label">Tema Gelap</span>
+              <label class="toggle-switch">
+                <input type="checkbox" id="theme-toggle" />
+                <span class="slider"></span>
+              </label>
+            </div>
+          </div>
+        </li>
+      </ul>
     </nav>
 
     <div class="main-content">
-        <div class="header">
-            <div class="burger-menu" onclick="toggleHistory()">☰</div>
-            <h1>Kalkulator Ilmiah</h1>
-            <div class="clock" id="clock"></div>
+      <div class="header">
+        <div class="burger-menu" onclick="toggleHistory()">☰</div>
+        <h1>Kalkulator Ilmiah</h1>
+        <div class="clock" id="clock"></div>
+      </div>
+
+      <div class="container">
+        <div class="calculator">
+          <input type="text" class="display" id="display" readonly />
+          <div class="buttons">
+            <button class="clear" onclick="clearDisplay()">C</button>
+            <button class="operator" onclick="appendToDisplay('(')">(</button>
+            <button class="operator" onclick="appendToDisplay(')')">)</button>
+            <button class="operator" onclick="appendToDisplay('/')">/</button>
+
+            <button class="number" onclick="appendToDisplay('7')">7</button>
+            <button class="number" onclick="appendToDisplay('8')">8</button>
+            <button class="number" onclick="appendToDisplay('9')">9</button>
+            <button class="operator" onclick="appendToDisplay('*')">×</button>
+
+            <button class="number" onclick="appendToDisplay('4')">4</button>
+            <button class="number" onclick="appendToDisplay('5')">5</button>
+            <button class="number" onclick="appendToDisplay('6')">6</button>
+            <button class="operator" onclick="appendToDisplay('-')">-</button>
+
+            <button class="number" onclick="appendToDisplay('1')">1</button>
+            <button class="number" onclick="appendToDisplay('2')">2</button>
+            <button class="number" onclick="appendToDisplay('3')">3</button>
+            <button class="operator" onclick="appendToDisplay('+')">+</button>
+
+            <button class="number" onclick="appendToDisplay('0')">0</button>
+            <button class="number" onclick="appendToDisplay('.')">.</button>
+            <button class="equals" onclick="calculate()">=</button>
+          </div>
         </div>
-        
-        <div class="container">
-            <div class="calculator">
-                <input type="text" class="display" id="display" readonly>
-                <div class="buttons">
-                    <button class="clear" onclick="clearDisplay()">C</button>
-                    <button class="operator" onclick="appendToDisplay('(')">(</button>
-                    <button class="operator" onclick="appendToDisplay(')')">)</button>
-                    <button class="operator" onclick="appendToDisplay('/')">/</button>
-                    
-                    <button class="number" onclick="appendToDisplay('7')">7</button>
-                    <button class="number" onclick="appendToDisplay('8')">8</button>
-                    <button class="number" onclick="appendToDisplay('9')">9</button>
-                    <button class="operator" onclick="appendToDisplay('*')">×</button>
-                    
-                    <button class="number" onclick="appendToDisplay('4')">4</button>
-                    <button class="number" onclick="appendToDisplay('5')">5</button>
-                    <button class="number" onclick="appendToDisplay('6')">6</button>
-                    <button class="operator" onclick="appendToDisplay('-')">-</button>
-                    
-                    <button class="number" onclick="appendToDisplay('1')">1</button>
-                    <button class="number" onclick="appendToDisplay('2')">2</button>
-                    <button class="number" onclick="appendToDisplay('3')">3</button>
-                    <button class="operator" onclick="appendToDisplay('+')">+</button>
-                    
-                    <button class="number" onclick="appendToDisplay('0')">0</button>
-                    <button class="number" onclick="appendToDisplay('.')">.</button>
-                    <button class="equals" onclick="calculate()">=</button>
-                </div>
-            </div>
-        </div>
+      </div>
     </div>
-    
+
     <div class="sidebar" id="sidebar">
-        <h2>Riwayat Perhitungan</h2>
-        <div id="history-list"></div>
+      <h2>Riwayat Perhitungan</h2>
+      <div id="history-list"></div>
     </div>
-    
+
     <div class="overlay" id="overlay" onclick="toggleHistory()"></div>
-    
+
     <script src="js/calculator.js"></script>
     <script src="js/history.js"></script>
     <script src="js/theme.js"></script>
     <script src="js/clock.js"></script>
-</body>
+  </body>
 </html>
