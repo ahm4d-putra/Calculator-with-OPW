@@ -27,4 +27,4 @@
 ---
 
 ## 🚀 Coba Sekarang
-👉 **[DEMO LANGSUNG](advancedcalc-ten.vercel.app)**
+👉 **[COBA SEKARANG](https://ahm4d-putra.github.io/Calculator-with-OPW/)**
